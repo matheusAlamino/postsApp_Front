@@ -1,0 +1,50 @@
+<div fxLayout="column" fxLayoutAlign="space-around start">
+  <mat-card>
+    <mat-card-header fxLayout="column" fxLayoutAlign="start center">
+      <mat-toolbar class="mat-elevation-z8" style="z-index: 2;" color="primary">
+        <h3 matLine>Edit your user</h3>
+      </mat-toolbar>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="editUserForm" style="margin-top: 8px; margin-bottom: 8px" fxLayout="column"
+        fxLayoutAlign="space-around start">
+        <mat-form-field appearance="outline">
+          <mat-label>Full Name</mat-label>
+          <input matInput formControlName="name" autofocus>
+          <mat-error *ngIf="editUserForm.controls['name'].touched && !editUserForm.controls['name'].valid">Field name
+            <strong>invalid</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" type="email">
+          <mat-error *ngIf="editUserForm.controls['email'].touched && !editUserForm.controls['email'].valid">Field email
+            <strong>invalid</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" type="password">
+          <mat-error *ngIf="editUserForm.controls['password'].touched && !editUserForm.controls['password'].valid">Field
+            password <strong>invalid</strong>
+          </mat-error>
+        </mat-form-field>
+      </form>
+
+      <div fxLayout="row" fxLayoutAlign="end end">
+        <button mat-raised-button color="primary" (click)="updateUser()" type="button">
+          <mat-icon>save_alt</mat-icon>
+          Save
+        </button>
+        <span style="padding-right: 8px"></span>
+        <button mat-raised-button color="primary" type="button" (click)="deleteUser()">
+          <mat-icon>delete</mat-icon>
+          Delete
+        </button>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>

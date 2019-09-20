@@ -1,0 +1,32 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <p *ngIf="!editavel">{{comment.description}}</p>
+
+  <div *ngIf="mine">
+    <button mat-mini-fab [color]="'primary'" *ngIf="!editavel" (click)="editavel = true" style="margin-right: 8px">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-mini-fab [color]="'warn'" *ngIf="!editavel" (click)="deleteComment()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>
+
+<form *ngIf="editavel" [formGroup]="commentForm" fxLayout="row" fxLayoutAlign="space-between center"
+  (submit)="updateComment()">
+  <mat-form-field matLine style="width: 85%">
+    <textarea matInput formControlName="description" rows="1" [value]="comment.description"></textarea>
+  </mat-form-field>
+
+  <div fxLayout="row">
+    <span fxFlex="1 1 auto"></span>
+    <button color="primary" mat-stroked-button type="submit">
+      Save
+    </button>
+    <span style="padding-right: 8px"></span>
+    <button mat-stroked-button color="accent" type="button" (click)="editavel = false">
+      Cancel
+    </button>
+  </div>
+</form>
+
+<mat-divider></mat-divider>

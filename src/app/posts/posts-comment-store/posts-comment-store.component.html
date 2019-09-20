@@ -1,0 +1,11 @@
+<form [formGroup]="commentForm" class="mt-2" (submit)="storeComment()" fxLayout="column" fxLayoutAlign="center stretch">
+  <mat-form-field appearance="outline" style="color: white">
+    <mat-label>Your comment</mat-label>
+    <textarea matInput formControlName="description" rows="2"></textarea>
+  </mat-form-field>
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <button mat-stroked-button type="submit" color="primary">
+      Publish comment
+    </button>
+  </div>
+</form>

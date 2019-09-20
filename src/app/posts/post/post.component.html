@@ -1,0 +1,10 @@
+<mat-list *ngFor="let item of posts">
+  <mat-card>
+    <a mat-list-item matRipple [routerLink]="['../show', item.id]" style="padding-bottom: 0%; text-decoration: none">
+      <p matLine>
+        <strong matLine>{{item.user.name}}</strong>
+        <span matLine>{{item.text}}</span>
+      </p>
+    </a>
+  </mat-card>
+</mat-list>

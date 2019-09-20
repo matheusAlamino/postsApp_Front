@@ -1,0 +1,29 @@
+<div style="height: 100%" fxLayout="row" fxLayoutAlign="center center">
+  <form [formGroup]="loginForm" (submit)="login()">
+    <mat-card>
+      <mat-card-title>Login</mat-card-title>
+
+      <mat-form-field>
+        <input formControlName="email" type="text" matInput placeholder="email" autofocus>
+        <mat-error *ngIf="loginForm.controls['email'].touched && !loginForm.controls['email'].valid">
+          Field email invalid
+        </mat-error>
+      </mat-form-field>
+
+      <div>
+        <mat-form-field>
+          <input matInput formControlName="password" type="password" placeholder="password">
+          <mat-error *ngIf="loginForm.controls['password'].touched && !loginForm.controls['password'].valid">Field
+            password
+            invalid</mat-error>
+        </mat-form-field>
+      </div>
+
+      <button mat-button type="submit" class="mat-raised-button mb-2" color="primary">
+        Login
+      </button>
+      <p>Not a user? <a mat-button color="primary" [routerLink]="['../signup']">Register now</a></p>
+    </mat-card>
+
+  </form>
+</div>

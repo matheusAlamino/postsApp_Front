@@ -1,0 +1,38 @@
+<header>
+
+  <mat-toolbar fxLayout="row" class="mat-elevation-z4" style="z-index: 2;" color="primary">
+    <button mat-button [routerLink]="['index']">
+      <mat-icon>home</mat-icon>
+      <span style="padding-left: 8px">Social Posts</span>
+    </button>
+
+    <button mat-button [routerLink]="['store']">
+      <mat-icon>add</mat-icon>
+      <span style="padding-left: 8px">New Post</span>
+    </button>
+
+    <button mat-button [routerLink]="['notifications']">
+      <mat-icon>notification_important</mat-icon>
+      <span style="padding-left: 8px">My Notifications</span>
+    </button>
+
+    <span fxFlex="1 1 auto"></span>
+
+    <button mat-button class="mat-stroked-button" [matMenuTriggerFor]="projectMenu">
+      <mat-icon>face</mat-icon>
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-menu #projectMenu="matMenu" xPosition="before">
+    <button [disabled]="true" mat-menu-item>{{userName}}</button>
+    <button mat-menu-item [routerLink]="['users/show', userId]">
+      <span style="padding-right: 8px">User preferences</span>
+      <mat-icon>settings_applications</mat-icon>
+    </button>
+    <button mat-menu-item (click)="logout()" [routerLink]="['']">
+      <span style="padding-right: 8px">Logout</span>
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </mat-menu>
+</header>

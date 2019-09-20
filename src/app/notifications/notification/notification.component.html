@@ -1,0 +1,9 @@
+<mat-list *ngFor="let item of notifications">
+  <div mat-list-item fxLayout="row" fxLayoutAlign="space-between center">
+    {{item.text}}
+    <button mat-mini-fab color="primary" type="button" (click)="deleteNotification(item.id)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+  <mat-divider style="margin-top: 5px"></mat-divider>
+</mat-list>

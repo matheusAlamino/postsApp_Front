@@ -1,0 +1,15 @@
+<mat-toolbar fxLayout="row" class="mat-elevation-z20" style="z-index: 2;" color="primary">
+  <h3 matLine>Use this to publish your thoughts</h3>
+</mat-toolbar>
+<form [formGroup]="postForm" (submit)="storePost()" fxLayout="column" fxLayoutAlign="center stretch">
+  <mat-form-field appearance="outline" style="color: white">
+    <mat-label>write here</mat-label>
+    <textarea matInput formControlName="text" rows="7"></textarea>
+  </mat-form-field>
+
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <button mat-stroked-button type="submit" color="primary">
+      Publish post
+    </button>
+  </div>
+</form>

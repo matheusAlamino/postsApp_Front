@@ -1,15 +1,22 @@
-<div fxLayout="row">
-  <h3 matLine style="color: white">Use this to publish your thoughts</h3>
+<div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
+  <h3>Publish your thoughts</h3>
+  <button mat-mini-fab color="primary" type="button" [mat-dialog-close]="" autofocus="false">
+    <mat-icon>clear</mat-icon>
+  </button>
 </div>
-<form [formGroup]="postForm" (submit)="storePost()" fxLayout="column" fxLayoutAlign="center stretch">
-  <mat-form-field appearance="outline" style="color: white">
-    <mat-label>write here</mat-label>
-    <textarea matInput formControlName="text" rows="7"></textarea>
-  </mat-form-field>
 
-  <div fxLayout="row" fxLayoutAlign="end center">
-    <button mat-stroked-button type="submit" color="primary">
-      Publish post
-    </button>
-  </div>
-</form>
+<div mat-dialog-content>
+  <form [formGroup]="postForm" fxLayout="column" autocomplete="off">
+    <mat-form-field appearance="outline" style="color: white">
+      <mat-label>write here</mat-label>
+      <textarea matInput formControlName="text" rows="7"></textarea>
+    </mat-form-field>
+  </form>
+
+</div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+  <button mat-raised-button color="primary" type="button" (click)="storePost()">
+    <mat-icon>save_alt</mat-icon>
+    Publish post
+  </button>
+</div>

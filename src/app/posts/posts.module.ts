@@ -16,6 +16,8 @@ import { HeaderComponent } from '../header/header.component';
 import { MaterialFlexModule } from '../material-flex/material-flex.module';
 import { UsersModule } from '../users/users.module';
 import { UsersShowComponent } from '../users/users-show/users-show.component';
+import { NotificationsIndexComponent } from '../notifications/notifications-index/notifications-index.component';
+import { NotificationComponent } from '../notifications/notification/notification.component';
 
 
 const routes: Routes = [
@@ -42,7 +44,9 @@ const routes: Routes = [
       PostComponent,
       PostBootComponent,
       HeaderComponent,
-      UsersShowComponent
+      UsersShowComponent,
+      NotificationsIndexComponent,
+      NotificationComponent
     ],
   imports: [
     CommonModule,
@@ -52,7 +56,11 @@ const routes: Routes = [
     CommentsModule,
     MaterialFlexModule
   ],
-  entryComponents: [UsersShowComponent],
+  entryComponents: [
+    UsersShowComponent,
+    NotificationsIndexComponent,
+    NotificationComponent
+  ],
   providers: [
     PostsService,
     {

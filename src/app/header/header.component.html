@@ -6,12 +6,12 @@
       <span style="padding-left: 8px">Social Posts</span>
     </button>
 
-    <button mat-button [routerLink]="['store']">
+    <button mat-button (click)="openNewPost()">
       <mat-icon>add</mat-icon>
       <span style="padding-left: 8px">New Post</span>
     </button>
 
-    <button mat-button [routerLink]="['notifications']">
+    <button mat-button (click)="openDialogNotify()">
       <mat-icon>notification_important</mat-icon>
       <span style="padding-left: 8px">My Notifications</span>
     </button>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationsService } from '../notifications.service';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-notifications-index',
@@ -11,11 +12,22 @@ export class NotificationsIndexComponent implements OnInit {
   constructor(private _notificationsService: NotificationsService) { }
 
   notifications: any[] = []
+  totalList = 0
 
   ngOnInit() {
+    this.loadList(1)
 
-    this._notificationsService.index().subscribe(response => {
-      this.notifications = response
+  }
+
+  pageEvent(page: PageEvent) {
+    const pageNumber = page.pageIndex + 1
+    this.loadList(pageNumber)
+  }
+
+  loadList(page: number) {
+    this._notificationsService.index(page).subscribe(response => {
+      this.notifications = response['data']
+      this.totalList = response['total']
     })
   }
 }

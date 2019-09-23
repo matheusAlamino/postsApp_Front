@@ -4,3 +4,6 @@
 <div style="padding-top: 10px">
   <app-post [posts]="posts"></app-post>
 </div>
+<mat-paginator #paginator [showFirstLastButtons]="true" [pageSize]="6" [length]="totalList" style="margin-top: 10px"
+  (page)="pageEvent($event)">
+</mat-paginator>

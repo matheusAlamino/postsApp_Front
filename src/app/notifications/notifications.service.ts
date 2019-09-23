@@ -9,8 +9,8 @@ export class NotificationsService {
 
   constructor(private _http: HttpClient) { }
 
-  index() {
-    return this._http.get<any[]>(`${environment.api}/notification`)
+  index(page: number) {
+    return this._http.get<any[]>(`${environment.api}/notification?page=${page}`)
   }
 
   delete(id: number) {

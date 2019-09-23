@@ -9,11 +9,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotificationComponent } from './notification/notification.component';
 import { MaterialFlexModule } from '../material-flex/material-flex.module';
 
-const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'index' },
-  { path: 'index', component: NotificationsIndexComponent, data: { title: 'Notifications' } },
-];
-
 @NgModule({
   declarations: [
     NotificationsIndexComponent,
@@ -23,9 +18,10 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes),
     MaterialFlexModule
   ],
+  exports: [NotificationsIndexComponent,
+    NotificationComponent],
   providers: [
     NotificationsService,
     {

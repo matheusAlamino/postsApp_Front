@@ -13,8 +13,8 @@ export class PostsService {
     private _router: Router
   ) { }
 
-  index() {
-    return this._http.get<any[]>(`${environment.api}/post`)
+  index(page: number) {
+    return this._http.get<any[]>(`${environment.api}/post?page=${page}`)
   }
 
   show(id: number) {
@@ -26,7 +26,7 @@ export class PostsService {
       `${environment.api}/post`,
       JSON.stringify(post)
     ).toPromise().then(response => {
-      this._router.navigate(['posts'])
+      location.reload()
     })
   }
 

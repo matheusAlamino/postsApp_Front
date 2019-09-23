@@ -1,7 +1,16 @@
-<div fxLayout="row">
-  <h3 matLine style="color: white">Notifications</h3>
+<div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
+  <h3>Notifications</h3>
+  <button mat-mini-fab color="primary" type="button" [mat-dialog-close]="" autofocus="false">
+    <mat-icon>clear</mat-icon>
+  </button>
 </div>
 
-<mat-card style="margin-top: 8px">
-  <app-notification class="row container" [notifications]="notifications"></app-notification>
-</mat-card>
+<div mat-dialog-content>
+  <mat-card style="margin-top: 8px">
+    <app-notification class="row container" [notifications]="notifications"></app-notification>
+  </mat-card>
+
+  <mat-paginator #paginator [showFirstLastButtons]="true" [pageSize]="6" [length]="totalList" style="margin-top: 10px"
+    (page)="pageEvent($event)">
+  </mat-paginator>
+</div>

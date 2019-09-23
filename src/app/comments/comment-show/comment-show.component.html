@@ -14,7 +14,7 @@
 <form *ngIf="editavel" [formGroup]="commentForm" fxLayout="row" fxLayoutAlign="space-between center"
   (submit)="updateComment()">
   <mat-form-field matLine style="width: 85%">
-    <textarea matInput formControlName="description" rows="1" [value]="comment.description"></textarea>
+    <textarea matInput formControlName="description" rows="1" [value]="comment.description" autofocus></textarea>
   </mat-form-field>
 
   <div fxLayout="row">

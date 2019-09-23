@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -32,7 +33,8 @@ export class SignupComponent implements OnInit {
   })
 
   constructor(
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _route: Router
   ) { }
 
   ngOnInit() {
@@ -43,6 +45,7 @@ export class SignupComponent implements OnInit {
     if (this.registerForm.valid) {
       this._authService.storeUser(this.registerForm.value);
       console.log(this.registerForm.value)
+      this._route.navigate([''])
     } else {
       alert('All fields must be filled')
     }

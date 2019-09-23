@@ -14,6 +14,8 @@ import { CommentsModule } from '../comments/comments.module';
 import { PostBootComponent } from './post-boot/post-boot.component';
 import { HeaderComponent } from '../header/header.component';
 import { MaterialFlexModule } from '../material-flex/material-flex.module';
+import { UsersModule } from '../users/users.module';
+import { UsersShowComponent } from '../users/users-show/users-show.component';
 
 
 const routes: Routes = [
@@ -39,7 +41,8 @@ const routes: Routes = [
       PostsCommentStoreComponent,
       PostComponent,
       PostBootComponent,
-      HeaderComponent
+      HeaderComponent,
+      UsersShowComponent
     ],
   imports: [
     CommonModule,
@@ -49,6 +52,7 @@ const routes: Routes = [
     CommentsModule,
     MaterialFlexModule
   ],
+  entryComponents: [UsersShowComponent],
   providers: [
     PostsService,
     {

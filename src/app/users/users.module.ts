@@ -8,11 +8,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from '../auth-interceptor.service';
 import { MaterialFlexModule } from '../material-flex/material-flex.module';
 
-const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'show/:id' },
-  { path: 'show/:id', component: UsersShowComponent, data: { title: 'User preferences' } },
-];
-
 @NgModule({
   declarations: [
     UsersShowComponent
@@ -21,9 +16,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialFlexModule,
-    RouterModule.forChild(routes)
+    MaterialFlexModule
   ],
+  exports: [UsersShowComponent],
   providers: [
     AuthService,
     {

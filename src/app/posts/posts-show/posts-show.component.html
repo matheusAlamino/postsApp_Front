@@ -42,10 +42,9 @@
       </mat-card-content>
     </mat-card>
 
-    <mat-toolbar fxLayout="row" color="primary" class="mat-elevation-z20"
-      style="z-index: 2;margin-bottom: 5px; margin-top: 15px">
-      <h3 matLine>Comments</h3>
-    </mat-toolbar>
+    <div fxLayout="row" style="margin-bottom: 5px; margin-top: 15px">
+      <h3 matLine style="color: white">Comments</h3>
+    </div>
     <mat-card class="comment-list">
       <mat-list *ngFor="let comment of post.comments">
         <app-comment-show mat-list-item [comment]="comment" [mine]="comment.id_usuario == userId">

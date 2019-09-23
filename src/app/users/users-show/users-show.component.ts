@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/auth.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-users-show',
@@ -39,7 +40,8 @@ export class UsersShowComponent implements OnInit {
   constructor(
     private _auth: AuthService,
     private _route: ActivatedRoute,
-    private _router: Router
+    private _router: Router,
+    public dialogRef: MatDialogRef<any>
   ) { }
 
   ngOnInit() {
@@ -56,7 +58,7 @@ export class UsersShowComponent implements OnInit {
         .subscribe(res => {
           this._auth.logout();
           this._auth.login(this.editUserForm.value).then(() => {
-            location.reload()
+            this.dialogRef.close()
           })
         })
     } else {
@@ -67,6 +69,7 @@ export class UsersShowComponent implements OnInit {
   deleteUser() {
     if (confirm('Are you sure do you want delete this perfil? All your datas will be lost')) {
       this._auth.delete(this.user.sub).subscribe(res => {
+        this.dialogRef.close()
         this._router.navigate([''])
       })
     }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { UsersShowComponent } from '../users/users-show/users-show.component';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +18,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private _auth: AuthService,
-    private _router: Router
+    private _router: Router,
+    private _dialog: MatDialog
   ) {
   }
 
@@ -29,5 +32,11 @@ export class HeaderComponent implements OnInit {
   logout() {
     this._auth.logout();
     this._router.navigate(['']);
+  }
+
+  openDialog(): void {
+    const dialogRef = this._dialog.open(UsersShowComponent, {
+      width: '450px'
+    });
   }
 }

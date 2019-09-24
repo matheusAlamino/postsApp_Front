@@ -1,7 +1,7 @@
 <div fxLayout="row">
   <h3 matLine style="color: white">Recent Posts</h3>
 </div>
-<div style="padding-top: 10px">
+<div style="padding-top: 10px; height: 75%;">
   <app-post [posts]="posts"></app-post>
 </div>
 <mat-paginator #paginator [showFirstLastButtons]="true" [pageSize]="6" [length]="totalList" style="margin-top: 10px"

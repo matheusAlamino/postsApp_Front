@@ -12,7 +12,8 @@
     </button>
 
     <button mat-button (click)="openDialogNotify()">
-      <mat-icon>notification_important</mat-icon>
+      <mat-icon *ngIf="novaNotificacao == 0">error_outline</mat-icon>
+      <mat-icon *ngIf="novaNotificacao > 0" matBadge="{{novaNotificacao}}" matBadgeColor="warn">error</mat-icon>
       <span style="padding-left: 8px">My Notifications</span>
     </button>
 

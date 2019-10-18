@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationsService } from '../notifications.service';
 import { PageEvent } from '@angular/material/paginator';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-notifications-index',
@@ -9,14 +10,15 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class NotificationsIndexComponent implements OnInit {
 
-  constructor(private _notificationsService: NotificationsService) { }
+  constructor(private _notificationsService: NotificationsService,
+    private _auth: AuthService) { }
 
   notifications: any[] = []
   totalList = 0
+  userId: number;
 
   ngOnInit() {
     this.loadList(1)
-
   }
 
   pageEvent(page: PageEvent) {
@@ -26,8 +28,14 @@ export class NotificationsIndexComponent implements OnInit {
 
   loadList(page: number) {
     this._notificationsService.index(page).subscribe(response => {
-      this.notifications = response['data']
-      this.totalList = response['total']
+      this.notifications = response['data']['data']
+      this.totalList = response['data']['total']
+
+      if (response['countNotSeen'] > 0) {
+        const userToken = this._auth.getUser()
+        this.userId = userToken.sub
+        this._notificationsService.update(this.userId).subscribe()
+      }
     })
   }
 }

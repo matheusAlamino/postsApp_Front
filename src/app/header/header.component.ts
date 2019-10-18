@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { UsersShowComponent } from '../users/users-show/users-show.component';
 import { NotificationsIndexComponent } from '../notifications/notifications-index/notifications-index.component';
 import { PostsStoreComponent } from '../posts/posts-store/posts-store.component';
+import { NotificationsService } from '../notifications/notifications.service';
 
 @Component({
   selector: 'app-header',
@@ -17,11 +18,13 @@ export class HeaderComponent implements OnInit {
   userName: string;
   userId: number;
   showLogout: boolean = false
+  novaNotificacao: number = 0
 
   constructor(
     private _auth: AuthService,
     private _router: Router,
-    private _dialog: MatDialog
+    private _dialog: MatDialog,
+    private _notificationsService: NotificationsService
   ) {
   }
 
@@ -29,6 +32,7 @@ export class HeaderComponent implements OnInit {
     const userToken = this._auth.getUser()
     this.userName = userToken.name
     this.userId = userToken.sub
+    this.verificaNotificacaoNova()
   }
 
   logout() {
@@ -52,5 +56,11 @@ export class HeaderComponent implements OnInit {
     const dialogRef = this._dialog.open(PostsStoreComponent, {
       width: '450px'
     });
+  }
+
+  verificaNotificacaoNova() {
+    this._notificationsService.index(1).subscribe(response => {
+      this.novaNotificacao = response['countNotSeen']
+    })
   }
 }

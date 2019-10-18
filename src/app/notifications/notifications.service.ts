@@ -16,4 +16,10 @@ export class NotificationsService {
   delete(id: number) {
     return this._http.delete(`${environment.api}/notification/${id}`)
   }
+
+  update(idUser: number) {
+    return this._http.put(
+      `${environment.api}/user/${idUser}/Notifications`,
+      JSON.stringify('Alterando notificacoes para vistas'))
+  }
 }

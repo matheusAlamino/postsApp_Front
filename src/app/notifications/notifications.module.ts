@@ -21,7 +21,8 @@ import { MaterialFlexModule } from '../material-flex/material-flex.module';
     MaterialFlexModule
   ],
   exports: [NotificationsIndexComponent,
-    NotificationComponent],
+    NotificationComponent,
+    NotificationsService],
   providers: [
     NotificationsService,
     {

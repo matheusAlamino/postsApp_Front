@@ -11,7 +11,7 @@
       <span style="padding-left: 8px">New Post</span>
     </button>
 
-    <button mat-button (click)="openDialogNotify()">
+    <button mat-button (click)="openBottomSheet()">
       <mat-icon *ngIf="novaNotificacao == 0">error_outline</mat-icon>
       <mat-icon *ngIf="novaNotificacao > 0" matBadge="{{novaNotificacao}}" matBadgeColor="warn">error</mat-icon>
       <span style="padding-left: 8px">My Notifications</span>

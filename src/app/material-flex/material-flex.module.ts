@@ -29,6 +29,7 @@ import { MatRadioModule } from '@angular/material/radio'
 import { MatButtonToggleModule } from '@angular/material/button-toggle'
 import { MatChipsModule } from '@angular/material/chips'
 import { MatPaginatorModule } from '@angular/material/paginator'
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet'
 
 @NgModule({
   declarations: [],
@@ -62,7 +63,8 @@ import { MatPaginatorModule } from '@angular/material/paginator'
     MatRadioModule,
     MatButtonToggleModule,
     MatChipsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatBottomSheetModule
   ],
   exports: [
     FlexLayoutModule,
@@ -91,7 +93,8 @@ import { MatPaginatorModule } from '@angular/material/paginator'
     MatRadioModule,
     MatButtonToggleModule,
     MatChipsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatBottomSheetModule
   ]
 })
 export class MaterialFlexModule { }

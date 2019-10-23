@@ -28,13 +28,15 @@ export class NotificationsIndexComponent implements OnInit {
 
   loadList(page: number) {
     this._notificationsService.index(page).subscribe(response => {
-      this.notifications = response['data']['data']
-      this.totalList = response['data']['total']
+      if (!response['message']) {
+        this.notifications = response['data']['data']
+        this.totalList = response['data']['total']
 
-      if (response['countNotSeen'] > 0) {
-        const userToken = this._auth.getUser()
-        this.userId = userToken.sub
-        this._notificationsService.update(this.userId).subscribe()
+        if (response['countNotSeen'] > 0) {
+          const userToken = this._auth.getUser()
+          this.userId = userToken.sub
+          this._notificationsService.update(this.userId).subscribe()
+        }
       }
     })
   }

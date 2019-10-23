@@ -8,6 +8,7 @@ import { NotificationsIndexComponent } from '../notifications/notifications-inde
 import { PostsStoreComponent } from '../posts/posts-store/posts-store.component';
 import { NotificationsService } from '../notifications/notifications.service';
 import { EventEmitter } from 'protractor';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-header',
@@ -25,7 +26,8 @@ export class HeaderComponent implements OnInit {
     private _auth: AuthService,
     private _router: Router,
     private _dialog: MatDialog,
-    private _notificationsService: NotificationsService
+    private _notificationsService: NotificationsService,
+    private _bottomSheet: MatBottomSheet
   ) {
   }
 
@@ -47,14 +49,12 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  openDialogNotify(): void {
-    const dialogRef = this._dialog.open(NotificationsIndexComponent, {
-      width: '450px'
-    });
+  openBottomSheet(): void {
+    const btSheetOpen = this._bottomSheet.open(NotificationsIndexComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
+    btSheetOpen.afterDismissed().subscribe(result => {
       this.verificaNotificacaoNova()
-    });
+    })
   }
 
   openNewPost(): void {

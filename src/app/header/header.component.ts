@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
@@ -7,6 +7,7 @@ import { UsersShowComponent } from '../users/users-show/users-show.component';
 import { NotificationsIndexComponent } from '../notifications/notifications-index/notifications-index.component';
 import { PostsStoreComponent } from '../posts/posts-store/posts-store.component';
 import { NotificationsService } from '../notifications/notifications.service';
+import { EventEmitter } from 'protractor';
 
 @Component({
   selector: 'app-header',
@@ -49,6 +50,10 @@ export class HeaderComponent implements OnInit {
   openDialogNotify(): void {
     const dialogRef = this._dialog.open(NotificationsIndexComponent, {
       width: '450px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.verificaNotificacaoNova()
     });
   }
 

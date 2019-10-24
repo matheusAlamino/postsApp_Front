@@ -1,6 +1,17 @@
 <div style="height: 10vh">
-  <app-header></app-header>
+  <app-header (expand)="openSideNav()"></app-header>
 </div>
-<div style="padding: 20px; padding-top: 0px; height: 87vh;">
-  <router-outlet></router-outlet>
-</div>
+<mat-sidenav-container class="mat-sidenav-transition">
+  <mat-sidenav #snav [mode]="'over'" fixedTopGap="56" position="end">
+    <mat-nav-list mat-position="end">
+      <div style="padding: 15px;">
+        <app-notifications-index #ani></app-notifications-index>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="padding: 20px; padding-top: 0px; height: 87vh;">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

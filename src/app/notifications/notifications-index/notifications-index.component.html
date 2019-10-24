@@ -4,7 +4,7 @@
 
 <div>
   <mat-card style="margin-top: 8px">
-    <app-notification class="row container" [notifications]="notifications"></app-notification>
+    <app-notification #appNotify class="row container" [notifications]="notifications"></app-notification>
   </mat-card>
 
   <mat-paginator #paginator [showFirstLastButtons]="true" [pageSize]="6" [length]="totalList" style="margin-top: 10px"

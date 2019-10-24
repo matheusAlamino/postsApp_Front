@@ -1,13 +1,10 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, Output, EventEmitter, HostListener } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { UsersShowComponent } from '../users/users-show/users-show.component';
-import { NotificationsIndexComponent } from '../notifications/notifications-index/notifications-index.component';
 import { PostsStoreComponent } from '../posts/posts-store/posts-store.component';
 import { NotificationsService } from '../notifications/notifications.service';
-import { EventEmitter } from 'protractor';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 @Component({
@@ -17,6 +14,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 })
 export class HeaderComponent implements OnInit {
 
+  @Output() expand = new EventEmitter()
   userName: string;
   userId: number;
   showLogout: boolean = false
@@ -49,14 +47,6 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  openBottomSheet(): void {
-    const btSheetOpen = this._bottomSheet.open(NotificationsIndexComponent);
-
-    btSheetOpen.afterDismissed().subscribe(result => {
-      this.verificaNotificacaoNova()
-    })
-  }
-
   openNewPost(): void {
     const dialogRef = this._dialog.open(PostsStoreComponent, {
       width: '450px'
@@ -67,5 +57,10 @@ export class HeaderComponent implements OnInit {
     this._notificationsService.index(1).subscribe(response => {
       this.novaNotificacao = response['countNotSeen']
     })
+  }
+
+  disparaEvento() {
+    this.expand.emit('')
+    this.novaNotificacao = 0
   }
 }

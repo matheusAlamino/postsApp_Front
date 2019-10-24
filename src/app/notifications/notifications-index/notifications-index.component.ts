@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, ViewChild } from '@angular/core';
 import { NotificationsService } from '../notifications.service';
 import { PageEvent } from '@angular/material/paginator';
 import { AuthService } from 'src/app/auth.service';
+import { NotificationComponent } from '../notification/notification.component';
 
 @Component({
   selector: 'app-notifications-index',
@@ -13,8 +14,10 @@ export class NotificationsIndexComponent implements OnInit {
   constructor(private _notificationsService: NotificationsService,
     private _auth: AuthService) { }
 
+  @ViewChild("appNotify") appNotify: NotificationComponent
   notifications: any[] = []
   totalList = 0
+  count = 0
   userId: number;
 
   ngOnInit() {
@@ -31,13 +34,19 @@ export class NotificationsIndexComponent implements OnInit {
       if (!response['message']) {
         this.notifications = response['data']['data']
         this.totalList = response['data']['total']
-
-        if (response['countNotSeen'] > 0) {
-          const userToken = this._auth.getUser()
-          this.userId = userToken.sub
-          this._notificationsService.update(this.userId).subscribe()
-        }
+        this.count = response['countNotSeen']
       }
     })
+  }
+
+  update() {
+    if (this.count > 0) {
+      this.appNotify.opened = true
+      const userToken = this._auth.getUser()
+      this.userId = userToken.sub
+      this._notificationsService.update(this.userId).subscribe()
+      this.count = 0
+    } else
+      this.appNotify.opened = false
   }
 }

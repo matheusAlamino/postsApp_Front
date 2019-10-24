@@ -1,6 +1,6 @@
 <mat-list *ngFor="let item of notifications">
   <div mat-list-item fxLayout="row" fxLayoutAlign="space-between center">
-    {{item.text}}
+    <span matLine [ngClass]="{seen: item.seen==1 || !opened}">{{item.text}}</span>
     <button mat-mini-fab color="primary" type="button" (click)="deleteNotification(item.id)">
       <mat-icon>delete</mat-icon>
     </button>

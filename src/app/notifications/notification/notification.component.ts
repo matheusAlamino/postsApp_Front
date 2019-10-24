@@ -9,10 +9,12 @@ import { NotificationsService } from '../notifications.service';
 export class NotificationComponent implements OnInit {
 
   @Input() notifications: any[] = []
+  opened: boolean = false
 
   constructor(private _notificationsService: NotificationsService) { }
 
   ngOnInit() {
+
   }
 
   deleteNotification(id: number) {

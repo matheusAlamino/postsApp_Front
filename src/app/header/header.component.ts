@@ -6,6 +6,7 @@ import { UsersShowComponent } from '../users/users-show/users-show.component';
 import { PostsStoreComponent } from '../posts/posts-store/posts-store.component';
 import { NotificationsService } from '../notifications/notifications.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MyPostsComponent } from '../posts/my-posts/my-posts.component';
 
 @Component({
   selector: 'app-header',
@@ -49,6 +50,12 @@ export class HeaderComponent implements OnInit {
 
   openNewPost(): void {
     const dialogRef = this._dialog.open(PostsStoreComponent, {
+      width: '450px'
+    });
+  }
+
+  openMyPosts(): void {
+    const dialogRef = this._dialog.open(MyPostsComponent, {
       width: '450px'
     });
   }

@@ -27,13 +27,17 @@
 
   <mat-menu #projectMenu="matMenu" xPosition="before">
     <button [disabled]="true" mat-menu-item>{{userName}}</button>
+    <button mat-menu-item (click)="openMyPosts()">
+      <mat-icon>assignment</mat-icon>
+      <span style="padding-right: 8px;">My Posts</span>
+    </button>
     <button mat-menu-item (click)="openDialog()">
-      <span style="padding-right: 8px">User preferences</span>
       <mat-icon>settings_applications</mat-icon>
+      <span style="padding-right: 8px">User preferences</span>
     </button>
     <button mat-menu-item (click)="logout()" [routerLink]="['']">
-      <span style="padding-right: 8px">Logout</span>
       <mat-icon>exit_to_app</mat-icon>
+      <span style="padding-right: 8px">Logout</span>
     </button>
   </mat-menu>
 </header>

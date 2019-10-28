@@ -1,11 +1,12 @@
 <div fxLayout="row" fxLayoutAlign="space-between center">
   <p *ngIf="!editavel">{{comment.description}}</p>
 
-  <div *ngIf="mine">
-    <button mat-mini-fab [color]="'primary'" *ngIf="!editavel" (click)="editavel = true" style="margin-right: 8px">
+  <div>
+    <button mat-mini-fab [color]="'primary'" *ngIf="edit && !editavel" (click)="editavel = true"
+      style="margin-right: 8px">
       <mat-icon>edit</mat-icon>
     </button>
-    <button mat-mini-fab [color]="'warn'" *ngIf="!editavel" (click)="deleteComment()">
+    <button mat-mini-fab [color]="'warn'" *ngIf="delete && !editavel" (click)="deleteComment()">
       <mat-icon>delete</mat-icon>
     </button>
   </div>

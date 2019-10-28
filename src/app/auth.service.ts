@@ -80,4 +80,8 @@ export class AuthService implements OnInit {
     const user = jwt_decode(token) as any;
     this.userSubject.next(user);
   }
+
+  pullMyPosts(id: number, page: number) {
+    return this._http.get<any[]>(`${environment.api}/user/${id}/myposts?page=${page}`)
+  }
 }

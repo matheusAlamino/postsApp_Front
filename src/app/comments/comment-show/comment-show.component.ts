@@ -11,7 +11,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class CommentShowComponent implements OnInit {
 
   @Input() comment: any
-  @Input() mine: boolean
+  @Input() edit: boolean
+  @Input() delete: boolean
   editavel: boolean
   commentForm = new FormGroup({
     description: new FormControl(

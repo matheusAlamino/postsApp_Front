@@ -18,6 +18,7 @@ import { UsersModule } from '../users/users.module';
 import { UsersShowComponent } from '../users/users-show/users-show.component';
 import { NotificationsIndexComponent } from '../notifications/notifications-index/notifications-index.component';
 import { NotificationComponent } from '../notifications/notification/notification.component';
+import { MyPostsComponent } from './my-posts/my-posts.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
       { path: 'show/:id', component: PostsShowComponent, data: { title: 'Post' } },
       { path: 'store', component: PostsStoreComponent, data: { title: 'Save post' } },
       { path: 'storeComment/:id/Comment', component: PostsCommentStoreComponent, data: { title: 'Save Comment' } },
+      { path: 'myposts/:id', component: MyPostsComponent, data: { title: 'My Posts' } },
       { path: 'notifications', loadChildren: '../notifications/notifications.module#NotificationsModule' },
       { path: 'users', loadChildren: '../users/users.module#UsersModule' }
     ]
@@ -46,7 +48,8 @@ const routes: Routes = [
       HeaderComponent,
       UsersShowComponent,
       NotificationsIndexComponent,
-      NotificationComponent
+      NotificationComponent,
+      MyPostsComponent
     ],
   imports: [
     CommonModule,

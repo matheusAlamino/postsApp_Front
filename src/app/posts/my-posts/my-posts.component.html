@@ -1,0 +1,14 @@
+<div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
+  <h3>My Published Posts</h3>
+  <button mat-mini-fab color="primary" type="button" [mat-dialog-close]="" autofocus="false">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+
+<div mat-dialog-content>
+  <app-post [posts]="posts" (closeDialog)="closeDialog()"></app-post>
+</div>
+
+<mat-paginator #paginator [showFirstLastButtons]="true" [pageSize]="6" [length]="totalList" style="margin-top: 10px"
+  (page)="pageEvent($event)">
+</mat-paginator>

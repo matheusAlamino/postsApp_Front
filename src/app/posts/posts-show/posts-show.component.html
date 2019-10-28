@@ -47,7 +47,8 @@
     </div>
     <mat-card class="comment-list">
       <mat-list *ngFor="let comment of post.comments">
-        <app-comment-show mat-list-item [comment]="comment" [mine]="comment.id_usuario == userId">
+        <app-comment-show mat-list-item [comment]="comment" [edit]="comment.id_usuario == userId"
+          [delete]="comment.id_usuario == userId || post.id_usuario == userId">
         </app-comment-show>
       </mat-list>
     </mat-card>

@@ -35,6 +35,7 @@ export class ConfirmationComponent implements OnInit {
 
 
 // EXAMPLE:
+  //private _confirmationSheet: MatBottomSheet
     //this._confirmationSheet.open(ConfirmationComponent, {
     //   data: {
     //     message: "Are you sure do you want delete this perfil? All your datas will be lost",

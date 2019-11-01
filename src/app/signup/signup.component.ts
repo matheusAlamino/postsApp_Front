@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-signup',
@@ -35,7 +36,8 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private _authService: AuthService,
-    private _route: Router
+    private _route: Router,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -48,8 +50,9 @@ export class SignupComponent implements OnInit {
       console.log(this.registerForm.value)
       this._route.navigate([''])
     } else {
-      alert('All fields must be filled')
+      this._snackBar.open(`All fields need to be filled!`, 'OK', {
+        duration: 15000
+      })
     }
   }
-
 }

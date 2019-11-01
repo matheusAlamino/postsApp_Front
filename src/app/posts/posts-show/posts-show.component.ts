@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { ConfirmationComponent } from 'src/app/confirmation/confirmation.component';
 
 @Component({
   selector: 'app-posts-show',
@@ -30,7 +33,9 @@ export class PostsShowComponent implements OnInit {
     private _route: ActivatedRoute,
     private _postsService: PostsService,
     private _router: Router,
-    private _auth: AuthService
+    private _auth: AuthService,
+    private _snackBar: MatSnackBar,
+    private _confirmationSheet: MatBottomSheet
   ) { }
 
   ngOnInit() {
@@ -46,10 +51,16 @@ export class PostsShowComponent implements OnInit {
   }
 
   deletePost() {
-    if (confirm('Are you sure do you want delete this post?')) {
-      this._postsService.delete(this.id).subscribe()
-      this._router.navigate(['posts'])
-    }
+    this._confirmationSheet.open(ConfirmationComponent, {
+      data: {
+        message: "Are you sure do you want delete this post?",
+        confirmButton: true,
+        answer: () => {
+          this._postsService.delete(this.id).subscribe()
+          this._router.navigate(['posts'])
+        }
+      }
+    })
   }
 
   updatePost() {
@@ -59,7 +70,9 @@ export class PostsShowComponent implements OnInit {
       this.post$.subscribe()
       this.editavel = false
     } else {
-      alert('The field text must be filled with at least 20 characters')
+      this._snackBar.open('The field text must be filled with at least 20 characters', 'OK', {
+        duration: 15000
+      })
     }
   }
 }

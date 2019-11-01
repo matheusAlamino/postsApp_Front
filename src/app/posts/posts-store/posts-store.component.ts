@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostsService } from '../posts.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-posts-store',
@@ -22,7 +23,8 @@ export class PostsStoreComponent implements OnInit {
 
   constructor(
     private _postsService: PostsService,
-    private _router: Router
+    private _router: Router,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -32,7 +34,9 @@ export class PostsStoreComponent implements OnInit {
     if (this.postForm.valid)
       this._postsService.store(this.postForm.value)
     else
-      alert('The field must be filled with at least 20 characters')
+      this._snackBar.open('The field must be filled with at least 20 characters', 'OK', {
+        duration: 15000
+      })
   }
 
 }

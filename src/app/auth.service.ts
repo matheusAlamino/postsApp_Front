@@ -5,6 +5,7 @@ import { TokenService } from './token/token.service';
 import { Router } from '@angular/router';
 import * as jwt_decode from "jwt-decode";
 import { BehaviorSubject, Observable } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,8 @@ export class AuthService implements OnInit {
   constructor(
     private _http: HttpClient,
     private _token: TokenService,
-    private _router: Router) {
+    private _router: Router,
+    private _snackBar: MatSnackBar) {
 
   }
 
@@ -49,7 +51,9 @@ export class AuthService implements OnInit {
       console.log(response);
     },
       err => {
-        alert('Error')
+        this._snackBar.open(`ERROR!`, 'OK', {
+          duration: 15000
+        })
       })
   }
 

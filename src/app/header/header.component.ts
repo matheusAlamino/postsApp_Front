@@ -55,8 +55,10 @@ export class HeaderComponent implements OnInit {
   }
 
   openMyPosts(): void {
+    this._router.navigate(['posts']);
     const dialogRef = this._dialog.open(MyPostsComponent, {
-      width: '450px'
+      width: '450px',
+      height: '490px'
     });
   }
 

@@ -5,6 +5,9 @@ import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { ConfirmationComponent } from 'src/app/confirmation/confirmation.component';
 
 @Component({
   selector: 'app-users-show',
@@ -15,6 +18,7 @@ export class UsersShowComponent implements OnInit {
 
   id: number
   user: any
+  hide: boolean = true
   editUserForm = new FormGroup({
     name: new FormControl(
       '',
@@ -41,7 +45,9 @@ export class UsersShowComponent implements OnInit {
     private _auth: AuthService,
     private _route: ActivatedRoute,
     private _router: Router,
-    public dialogRef: MatDialogRef<any>
+    public dialogRef: MatDialogRef<any>,
+    private _snackBar: MatSnackBar,
+    private _confirmationSheet: MatBottomSheet
   ) { }
 
   ngOnInit() {
@@ -59,19 +65,28 @@ export class UsersShowComponent implements OnInit {
           this._auth.logout();
           this._auth.login(this.editUserForm.value).then(() => {
             this.dialogRef.close()
+            location.reload()
           })
         })
     } else {
-      alert('All fields must be filled')
+      this._snackBar.open(`All fields need to be filled!`, 'OK', {
+        duration: 15000
+      })
     }
   }
 
   deleteUser() {
-    if (confirm('Are you sure do you want delete this perfil? All your datas will be lost')) {
-      this._auth.delete(this.user.sub).subscribe(res => {
-        this.dialogRef.close()
-        this._router.navigate([''])
-      })
-    }
+    this._confirmationSheet.open(ConfirmationComponent, {
+      data: {
+        message: "Are you sure do you want delete this perfil? All your datas will be lost",
+        confirmButton: true,
+        answer: () => {
+          this._auth.delete(this.user.sub).subscribe(res => {
+            this.dialogRef.close()
+            this._router.navigate([''])
+          })
+        }
+      }
+    })
   }
 }

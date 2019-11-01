@@ -3,7 +3,7 @@
     <mat-card>
       <mat-card-title>Login</mat-card-title>
 
-      <mat-form-field>
+      <mat-form-field fxLayout="column" fxLayoutAlign="space-around stretch">
         <input formControlName="email" type="text" matInput placeholder="email" autofocus>
         <mat-error *ngIf="loginForm.controls['email'].touched && !loginForm.controls['email'].valid">
           Field email invalid
@@ -12,7 +12,9 @@
 
       <div>
         <mat-form-field>
-          <input matInput formControlName="password" type="password" placeholder="password">
+          <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" placeholder="password">
+          <mat-icon style="cursor: pointer;" (click)="hide = !hide" matSuffix>
+            {{ hide ? 'visibility' : 'visibility_off' }}</mat-icon>
           <mat-error *ngIf="loginForm.controls['password'].touched && !loginForm.controls['password'].valid">Field
             password
             invalid</mat-error>

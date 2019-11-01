@@ -25,7 +25,9 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
-      <input matInput formControlName="password" type="password">
+      <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+      <mat-icon style="cursor: pointer;" (click)="hide = !hide" matSuffix>
+        {{ hide ? 'visibility' : 'visibility_off' }}</mat-icon>
       <mat-error *ngIf="editUserForm.controls['password'].touched && !editUserForm.controls['password'].valid">Field
         password <strong>invalid</strong>
       </mat-error>

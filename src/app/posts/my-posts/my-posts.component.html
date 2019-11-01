@@ -5,10 +5,10 @@
   </button>
 </div>
 
-<div mat-dialog-content>
+<div mat-dialog-content style="padding-bottom: 2px; height: 62%;">
   <app-post [posts]="posts" (closeDialog)="closeDialog()"></app-post>
 </div>
 
-<mat-paginator #paginator [showFirstLastButtons]="true" [pageSize]="6" [length]="totalList" style="margin-top: 10px"
+<mat-paginator #paginator [showFirstLastButtons]="true" [pageSize]="3" [length]="totalList" style="margin-top: 10px"
   (page)="pageEvent($event)">
 </mat-paginator>

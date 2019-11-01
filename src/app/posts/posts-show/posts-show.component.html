@@ -5,7 +5,7 @@
         <h3>Post</h3>
 
         <span fxFlex="1 1 auto"></span>
-        <div *ngIf="post.id_usuario === userId">
+        <div *ngIf="post.data.id_usuario === userId">
           <button mat-mini-fab [color]="'primary'" (click)="editavel = true" type="button">
             <mat-icon>edit</mat-icon>
           </button>
@@ -20,12 +20,12 @@
       <mat-card-content style="padding-top: 5px">
         <mat-divider></mat-divider>
 
-        <p matLine *ngIf="!editavel" style="padding-left: 20px;padding-top: 20px">{{post.text}}</p>
+        <p matLine *ngIf="!editavel" style="padding-left: 20px;padding-top: 20px">{{post.data.text}}</p>
 
         <form *ngIf="editavel" [formGroup]="postForm" style="padding-top: 20px" (submit)="updatePost()"
           fxLayout="column" fxLayoutAlign="space-between stretch">
           <mat-form-field matLine>
-            <textarea matInput formControlName="text" [value]="post.text" placeholder="post text"></textarea>
+            <textarea matInput formControlName="text" [value]="post.data.text" placeholder="post text"></textarea>
           </mat-form-field>
 
           <div fxLayout="row">
@@ -42,13 +42,14 @@
       </mat-card-content>
     </mat-card>
 
-    <div fxLayout="row" style="margin-bottom: 5px; margin-top: 15px">
+    <div fxLayout="row" fxLayoutAlign="space-between start" style="margin-bottom: 5px; margin-top: 15px">
       <h3 matLine style="color: white">Comments</h3>
+      <h6>{{post.totalComments}} comment(s)</h6>
     </div>
     <mat-card class="comment-list">
-      <mat-list *ngFor="let comment of post.comments">
+      <mat-list *ngFor="let comment of post.data.comments">
         <app-comment-show mat-list-item [comment]="comment" [edit]="comment.id_usuario == userId"
-          [delete]="comment.id_usuario == userId || post.id_usuario == userId">
+          [delete]="comment.id_usuario == userId || post.data.id_usuario == userId">
         </app-comment-show>
       </mat-list>
     </mat-card>

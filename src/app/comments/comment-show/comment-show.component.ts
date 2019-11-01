@@ -24,9 +24,7 @@ export class CommentShowComponent implements OnInit {
   })
 
   constructor(
-    private _commentsService: CommentsService,
-    private _router: Router,
-    private _route: ActivatedRoute) { }
+    private _commentsService: CommentsService) { }
 
   ngOnInit() {
   }

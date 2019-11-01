@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class SigninComponent implements OnInit {
 
+  hide: boolean = true
   loginForm = new FormGroup({
     email: new FormControl(
       '',

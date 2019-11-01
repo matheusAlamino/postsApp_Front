@@ -1,13 +1,13 @@
-<div xLayout="row" fxLayoutAlign="space-between center">
+<div fxLayout="row" fxLayoutAlign="space-between center">
   <h3>Notifications</h3>
 </div>
 
-<div>
-  <mat-card style="margin-top: 8px">
+<div style="height: 315px;">
+  <mat-card style="margin-top: 8px;">
     <app-notification #appNotify class="row container" [notifications]="notifications"></app-notification>
   </mat-card>
-
-  <mat-paginator #paginator [showFirstLastButtons]="true" [pageSize]="6" [length]="totalList" style="margin-top: 10px"
-    (page)="pageEvent($event)">
-  </mat-paginator>
 </div>
+
+<mat-paginator #paginator [showFirstLastButtons]="true" [pageSize]="6" [length]="totalList" style="margin-top: 10px"
+  (page)="pageEvent($event)">
+</mat-paginator>

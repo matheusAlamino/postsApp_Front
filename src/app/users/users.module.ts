@@ -7,6 +7,7 @@ import { AuthService } from '../auth.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from '../auth-interceptor.service';
 import { MaterialFlexModule } from '../material-flex/material-flex.module';
+import { ConfirmationComponent } from '../confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MaterialFlexModule } from '../material-flex/material-flex.module';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialFlexModule
+    MaterialFlexModule,
+    ConfirmationComponent
   ],
   exports: [UsersShowComponent],
   providers: [

@@ -19,6 +19,8 @@ import { UsersShowComponent } from '../users/users-show/users-show.component';
 import { NotificationsIndexComponent } from '../notifications/notifications-index/notifications-index.component';
 import { NotificationComponent } from '../notifications/notification/notification.component';
 import { MyPostsComponent } from './my-posts/my-posts.component';
+import { ConfirmationComponent } from '../confirmation/confirmation.component';
+import { MAT_BOTTOM_SHEET_DEFAULT_OPTIONS } from '@angular/material/bottom-sheet';
 
 
 const routes: Routes = [
@@ -49,7 +51,8 @@ const routes: Routes = [
       UsersShowComponent,
       NotificationsIndexComponent,
       NotificationComponent,
-      MyPostsComponent
+      MyPostsComponent,
+      ConfirmationComponent
     ],
   imports: [
     CommonModule,
@@ -62,7 +65,8 @@ const routes: Routes = [
   entryComponents: [
     UsersShowComponent,
     NotificationsIndexComponent,
-    NotificationComponent
+    NotificationComponent,
+    ConfirmationComponent
   ],
   providers: [
     PostsService,
@@ -70,6 +74,10 @@ const routes: Routes = [
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
+    },
+    {
+      provide: MAT_BOTTOM_SHEET_DEFAULT_OPTIONS,
+      useValue: { hasBackdrop: true }
     }
   ],
 

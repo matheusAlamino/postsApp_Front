@@ -33,10 +33,7 @@ export class AuthService implements OnInit {
         this._token.setToken(response.access_token)
         this.decodeAndNotify();
         this._router.navigate(['posts'])
-      },
-        err => {
-          alert('Invalid username or password')
-        })
+      })
   }
 
   logout() {

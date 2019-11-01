@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
+  hide: boolean = true
   registerForm = new FormGroup({
     name: new FormControl(
       '',
